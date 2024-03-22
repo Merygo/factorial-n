@@ -1,0 +1,84 @@
+using System;
+
+namespace MenuApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            bool exit = false;
+            while (!exit)
+            {
+                Console.Clear();
+                Console.WriteLine("Bienvenido a la pagina de un Menú de Cálculos");
+                Console.WriteLine("1. Cálculo del factorial de un número");
+                Console.WriteLine("2. Cálculo de Combinaciones");
+                Console.WriteLine("3. Cálculo de Permutaciones");
+                Console.WriteLine("4. Salir");
+                Console.WriteLine("Ingrese el número de la opción deseada:");
+
+                string option = Console.ReadLine();
+                Console.Clear();
+
+                switch (option)
+                {
+                    case "1":
+                        Console.WriteLine("Cálculo del factorial de un número");
+                        Console.WriteLine("Ingrese un número:");
+                        int number1 = Convert.ToInt32(Console.ReadLine());
+                        long factorial = CalculateFactorial(number1);
+                        Console.WriteLine($"El factorial de {number1} es: {factorial}");
+                        break;
+
+                    case "2":
+                        Console.WriteLine("Cálculo de Combinaciones");
+                        Console.WriteLine("Ingrese el número total de elementos:");
+                        int totalElements = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Ingrese el número de elementos a seleccionar:");
+                        int selectedElements = Convert.ToInt32(Console.ReadLine());
+                        long combinations = CalculateCombinations(totalElements, selectedElements);
+                        Console.WriteLine($"El número de combinaciones es: {combinations}");
+                        break;
+
+                    case "3":
+                        Console.WriteLine("Cálculo de Permutaciones");
+                        Console.WriteLine("Ingrese el número total de elementos:");
+                        int totalElements2 = Convert.ToInt32(Console.ReadLine());
+                        long permutations = CalculatePermutations(totalElements2);
+                        Console.WriteLine($"El número de permutaciones es: {permutations}");
+                        break;
+
+                    case "4":
+                        Console.WriteLine("Gracias por utilizar la aplicación. ¡Hasta luego! Que tenga un excelente dia..");
+                        exit = true;
+                        break;
+
+                    default:
+                        Console.WriteLine("Opción inválida. Por favor, ingrese un número válido.");
+                        break;
+                }
+
+                Console.WriteLine("Presione cualquier tecla  para poder continuar...");
+                Console.ReadKey();
+            }
+        }
+
+        static long CalculateFactorial(int number)
+        {
+            if (number == 0)
+                return 1;
+            else
+                return number * CalculateFactorial(number - 1);
+        }
+
+        static long CalculateCombinations(int n, int r)
+        {
+            return CalculateFactorial(n) / (CalculateFactorial(r) * CalculateFactorial(n - r));
+        }
+
+        static long CalculatePermutations(int n)
+        {
+            return CalculateFactorial(n);
+        }
+    }
+}
